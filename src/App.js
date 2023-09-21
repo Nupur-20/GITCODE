@@ -1,9 +1,7 @@
-import logo from './logo.svg';
 import './App.css';
 import Navbar from './components/Navbar';
 import { BrowserRouter as Router,Routes,Route } from "react-router-dom"
 import Home from './components/Home';
-import Temp from './components/temp';
 import Practice from './components/practice';
 import Login from './components/login/login';
 import About from './components/About';

@@ -6,6 +6,22 @@ const problemSchema=new Schema({
         type: String,
         required: true
     },
+    P_title: {
+        type: String,
+        required: true
+    },
+    Statement: {
+        type: String,
+        required: true
+    },
+    Test_cases: {
+        type: [],
+        required: true
+    },
+    Hidden_Test_cases: {
+        type: [],
+        required: true
+    },
     Total_Submissions: {
         type: Number,
         default: 0
