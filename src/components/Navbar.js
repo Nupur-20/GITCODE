@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
 
 function Navbar(props) {
     return (
@@ -13,16 +14,19 @@ function Navbar(props) {
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                             <li className="nav-item mx-5">
-                                <a className="nav-link active" aria-current="page" href="/">Home</a>
+                                <Link className="nav-link active" aria-current="page" to="/">Home</Link>
                             </li>
                             <li className="nav-item mx-5">
-                                <a className="nav-link active" aria-current="page" href="/">About</a>
+                                <Link className="nav-link active" aria-current="page" to="/about">About</Link>
                             </li>
                             <li className="nav-item mx-5">
-                                <a className="nav-link active" aria-current="page" href="/">Practice</a>
+                                <Link className="nav-link active" aria-current="page" to="/practice">Practice</Link>
                             </li>
                             <li className="nav-item mx-5">
-                                <a className="nav-link active" aria-current="page" href="/">Contact Us</a>
+                                <Link className="nav-link active" aria-current="page" to="/contact">Contact Us</Link>
+                            </li>
+                            <li className="nav-item mx-5">
+                                <Link className="nav-link active" aria-current="page" to="/login">Login</Link>
                             </li>
 
 
@@ -32,14 +36,14 @@ function Navbar(props) {
 
 
                             <li className="nav-item dropdown">
-                                <a className="nav-link dropdown-toggle" href="/" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <Link className="nav-link dropdown-toggle" to="/profile" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     You
-                                </a>
+                                </Link>
                                 <ul className="dropdown-menu">
-                                    <li><a className="dropdown-item" href="/">Profile</a></li>
-                                    <li><a className="dropdown-item" href="/">Credits</a></li>
-                                    <li><a className="dropdown-item" href="/">Title</a></li>
-                                    <li><a className="dropdown-item" href="/">History</a></li>
+                                    <li><Link className="dropdown-item" href="/profile">Profile</Link></li>
+                                    <li><Link className="dropdown-item" href="/credits">Credits</Link></li>
+                                    <li><Link className="dropdown-item" href="/title">Title</Link></li>
+                                    <li><Link className="dropdown-item" href="/history">History</Link></li>
                                 </ul>
                             </li>
 
