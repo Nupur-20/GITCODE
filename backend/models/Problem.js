@@ -14,6 +14,10 @@ const problemSchema=new Schema({
         type: String,
         required: true
     },
+    Tag: {
+        type: String,
+        required: true
+    },
     Test_cases: {
         type: [],
         required: true

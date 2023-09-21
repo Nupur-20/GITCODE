@@ -6,20 +6,28 @@ import Practice from './components/practice';
 import Login from './components/login/login';
 import About from './components/About';
 import Contact from './components/Contact';
-
+import Problem_statement from './components/problems/Problem_statement';
+import { useState } from 'react';
+import MyContext from './context/Mycontext';
 function App() {
+  const [Problem_statement2,set_statement]=useState("d");
+  const [Test_cases2,set_cases]=useState([1]);
+
   return (
     <>
-      <Router>
-        <Navbar />
-        <Routes>
-          <Route exact path="/" element={<Home />} />
-          <Route exact path="/practice" element={<Practice />} />
-          <Route exact path="/about" element={<About />} />
-          <Route exact path="/contact" element={<Contact />} />
-          <Route exact path="/login" element={<Login />} />
-        </Routes>
-      </Router>
+      <MyContext.Provider value={{ set_statement,set_cases }}>
+        <Router>
+          <Navbar />
+          <Routes>
+            <Route exact path="/" element={<Home />} />
+            <Route exact path="/practice" element={<Practice />} />
+            <Route exact path="/about" element={<About />} />
+            <Route exact path="/contact" element={<Contact />} />
+            <Route exact path="/login" element={<Login />} />
+            <Route exact path="/problem_statement" element={<Problem_statement Problem_statement1={Problem_statement2} Test_cases={Test_cases2} />} />
+          </Routes>
+        </Router>
+      </MyContext.Provider>
     </>
   );
 }
