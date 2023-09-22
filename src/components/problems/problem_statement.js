@@ -1,5 +1,6 @@
 import React,{ useEffect,useState } from 'react'
 import PropTypes from 'prop-types'
+import Compiler from './Compiler'
 
 function Problem_statement(props) {
     return (
@@ -17,6 +18,7 @@ function Problem_statement(props) {
                     {/* {props.Test_cases} */}
                 </div>
             </div>
+            <Compiler />
         </div>
     )
 }

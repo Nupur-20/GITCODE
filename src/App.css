@@ -39,14 +39,14 @@
 
 
 /* body{
-
-  background-size: cover;
-  text-align: center;
-  padding: 100px;
-  color: #1c1e21;
-  background-image: url("bg.png");
-
-} */
+  
+    background-size: cover;
+    text-align: center;
+    padding: 100px;
+    color: #1c1e21;
+    background-image: url("bg.png");
+  
+  } */
 
 body {
     background-image: url(./bg.png);
@@ -92,3 +92,11 @@ body {
 
 
 /*End contact Section */
+
+.col-sm-4:hover {
+    background-color: rgb(183, 213, 231);
+}
+
+.card-body {
+    background-color: rgb(169, 222, 233);
+}
