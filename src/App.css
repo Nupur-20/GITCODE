@@ -37,17 +37,6 @@
     }
 }
 
-
-/* body{
-  
-    background-size: cover;
-    text-align: center;
-    padding: 100px;
-    color: #1c1e21;
-    background-image: url("bg.png");
-  
-  } */
-
 body {
     background-image: url(./bg.png);
     background-size: cover;
@@ -94,9 +83,102 @@ body {
 /*End contact Section */
 
 .col-sm-4:hover {
-    background-color: rgb(183, 213, 231);
+    background-color: rgb(120, 161, 186);
 }
 
 .card-body {
     background-color: rgb(169, 222, 233);
+}
+
+.card-body-1 {
+    background-color: rgb(200, 216, 221);
+}
+
+.custom-link {
+    color: #010000;
+    font: bold;
+    font-size: calc(10px + 2vmin);
+    /* Change this to the desired color using CSS color codes or names */
+    /* You can add more styling as needed, such as text-decoration, hover effects, etc. */
+}
+
+.home {
+    position: relative;
+    z-index: 1;
+}
+
+.home::before {
+    content: "";
+    background-image: url(./BG2.png);
+    background-size: cover;
+    background-position: top center;
+    opacity: 0.3;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.home {
+    text-align: center;
+    padding: 20px;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+header {
+    background-image: url(./bg-3.jpeg);
+    opacity: 0.9;
+    padding: 20px;
+    color: rgb(246, 246, 246);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.heading-float {
+    animation: float 3s ease infinite;
+}
+
+h1 {
+    font-size: 2.5rem;
+}
+
+main {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+section {
+    flex: 1;
+    padding: 20px;
+    color: rgb(245, 245, 245);
+    border: 2px solid rgb(251, 251, 251);
+    border-radius: 5px;
+    font-weight: 900;
+}
+
+h2 {
+    font-size: 1.5rem;
+}
+
+.footer-bottom {
+    color: rgb(245, 245, 245);
+}
+
+.testimonials {
+    background-image: url(./BG2.png);
+    opacity: 0.5;
+    color: #f6fafd;
 }

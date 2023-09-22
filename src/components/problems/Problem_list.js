@@ -19,7 +19,7 @@ function Problem_list(props) {
     return (
         <>
             <div>
-                <li class="list-group-item d-flex justify-content-between align-items-start">
+                <li class="list-group-item d-flex justify-content-between align-items-start mx-3 my-2 ">
                     <div class="ms-2 me-auto">
                         <div class="fw-bold">
                             <Link onClick={func1()} to="/problem_statement">

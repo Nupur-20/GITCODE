@@ -2,7 +2,26 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 function Compiler(props) {
+    const compile=() => {
+        fetch('https://api.example.com/create',{
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ data: 'someData' }),
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                // Handle the response data here
+                console.log(data);
+            })
+            .catch((error) => {
+                // Handle any errors here
+                console.error(error);
+            });
+    }
     return (
+
         <div>
             <center>
                 <h1>Online IDE</h1>
@@ -35,4 +54,3 @@ Compiler.propTypes={
 }
 
 export default Compiler
-
