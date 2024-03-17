@@ -6,7 +6,7 @@ function Home(props) {
         <div className="main-home">
             <div className="home my-3 mx-3">
                 <header>
-                    <h1 className="heading-float">Welcome to DEV-DOJO</h1>
+                    <h1 className="heading-float">Welcome to GITCODE</h1>
                 </header>
                 <div className="content my-5">
                     <main>
