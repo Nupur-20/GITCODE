@@ -14,53 +14,53 @@ router.get('/all',async (req,res) => {
     }
 })
 
-router.get('/cf',async (req,res) => {
-    try {
-        console.log("hi i am fetching api of cf");
-        const response=await fetch('https://codeforces.com/api/problemset.problems',{
-            method: 'Get'
-        }
-        );
-        const problems=await response.json();
-        // probs,stats=problems;
-        // x=problems.result.problems();
-        const x=[]
-        problems.result.problems.map((prob) => {
-            x.push(prob)
-        })
-        console.log(problems)
-        console.log(x);
-        // console.log(probs)
-        res.send({});
-    } catch (error) {
-        res.status(500).send('Internal Server Error!!!');
-    }
-})
+// router.get('/cf',async (req,res) => {
+//     try {
+//         console.log("hi i am fetching api of cf");
+//         const response=await fetch('https://codeforces.com/api/problemset.problems',{
+//             method: 'Get'
+//         }
+//         );
+//         const problems=await response.json();
+//         // probs,stats=problems;
+//         // x=problems.result.problems();
+//         const x=[]
+//         problems.result.problems.map((prob) => {
+//             x.push(prob)
+//         })
+//         console.log(problems)
+//         console.log(x);
+//         // console.log(probs)
+//         res.send({});
+//     } catch (error) {
+//         res.status(500).send('Internal Server Error!!!');
+//     }
+// })
 
-router.get('/lc',async (req,res) => {
-    try {
-        const url='https://leetcode-api.p.rapidapi.com/leetcode/top-100?skip=3&limit=10';
-        const options={
-            method: 'GET',
-            headers: {
-                'X-RapidAPI-Key': '9f796b9440msh13385eb300a5028p134eefjsna0ee21949930',
-                'X-RapidAPI-Host': 'leetcode-api.p.rapidapi.com'
-            }
-        };
+// router.get('/lc',async (req,res) => {
+//     try {
+//         const url='https://leetcode-api.p.rapidapi.com/leetcode/top-100?skip=3&limit=10';
+//         const options={
+//             method: 'GET',
+//             headers: {
+//                 'X-RapidAPI-Key': '9f796b9440msh13385eb300a5028p134eefjsna0ee21949930',
+//                 'X-RapidAPI-Host': 'leetcode-api.p.rapidapi.com'
+//             }
+//         };
 
-        try {
-            const response=await fetch(url,options);
-            const result=await response.text();
-            console.log(result);
-        } catch (error) {
-            console.error(error);
-        }
-        // console.log(probs)
-        res.send({});
-    } catch (error) {
-        res.status(500).send('Internal Server Error!!!');
-    }
-})
+//         try {
+//             const response=await fetch(url,options);
+//             const result=await response.text();
+//             console.log(result);
+//         } catch (error) {
+//             console.error(error);
+//         }
+//         // console.log(probs)
+//         res.send({});
+//     } catch (error) {
+//         res.status(500).send('Internal Server Error!!!');
+//     }
+// })
 
 //codewars
 router.get('/codewars',async (req,res) => {
@@ -83,7 +83,7 @@ router.get('/codewars',async (req,res) => {
             const temp={ 'P_title': q2['name'],'Statement': q2['description'] };
             Data.push(temp);
         }));
-        console.log(Data);
+        console.log("Request done 1");
         res.send(Data);
     } catch (error) {
         console.log(error);

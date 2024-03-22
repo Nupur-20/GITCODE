@@ -3,6 +3,7 @@
 # dependencies
 /node_modules
 /.pnp
+/Progress.txt
 .pnp.js
 .env
 # testing
