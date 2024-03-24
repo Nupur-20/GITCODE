@@ -6,9 +6,6 @@ const jwt=require('jsonwebtoken');
 const { body,validationResult }=require('express-validator');// to validate details entered by user
 
 
-// to access browser memory/cache
-const NodeCache=require('node-cache')
-const myCache=new NodeCache()
 
 
 require('dotenv').config();
@@ -73,20 +70,24 @@ router.post('/signup',[
     }
 })
 
-router.get('/login',async (req,res) => {
+router.post('/login',async (req,res) => {
     try {
         const { email,password }=req.body;
 
         // search the user by email
         let user=await User.findOne({ Email: email });
+        // console.log("api req reached backend 1");
         if (!user) {
-            res.status(404).send("No such Email Exists!!");
+            // console.log("api req reached backend 3");
+            return res.status(404).send("No such Email Exists!!");
         }
         // compare the password entered by user and the encrypted password stored in database
+        // console.log("api req reached backend 2");
 
         const passCompare=await bcrypt.compare(password,user.Password);
         if (!passCompare) {
-            res.status(400).send("Invalid Password!!");
+            // console.log("api req reached backend 4");
+            return res.status(400).send("Invalid Password!!");
         }
 
         // Now that the user is verified
@@ -96,12 +97,11 @@ router.get('/login',async (req,res) => {
                 id: user.id
             }
         }
+        // console.log("api req reached backend 5");
         const signature=process.env['SIGNATURE'];
-        const authToken=await jwt.sign(data,signature);
+        const authToken=jwt.sign(data,signature);
 
-        // seting authToken value in browser memory/cache
-        // myCache.set('authToken',authToken);
-
+        console.log(authToken);
         res.send({ authToken });
     } catch (error) {
         console.log(error)
