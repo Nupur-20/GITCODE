@@ -1,6 +1,5 @@
 import React,{ useState } from 'react';
-import { Navigate,useNavigate } from 'react-router-dom';
-
+import { Link,useNavigate } from 'react-router-dom';
 // to access browser memory/cache
 
 function Login() {
@@ -11,7 +10,7 @@ function Login() {
     const login=async (e) => {
         try {
             e.preventDefault();
-            // Navigate("/");
+            navigate("/");
             const response=await fetch("http://localhost:5000/api/user/login",{
                 method: "POST",
                 mode: "cors",
@@ -28,7 +27,10 @@ function Login() {
             if (response.ok) {
                 const token=await response.json();
                 setauthToken(token.authToken);
+                const currDate=new Date().toLocaleDateString();
+                const currTime=new Date().toLocaleTimeString();
                 localStorage.setItem('authToken',token.authToken);
+                localStorage.setItem('timeStamp',currTime);
                 console.log("Login successful");
             } else {
                 console.error("Login failed");
@@ -47,7 +49,6 @@ function Login() {
                     <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" onChange={(e) => {
                         setEmail(e.target.value)
                     }} />
-                    <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
                 </div>
                 <div className="form-group">
                     <label htmlFor="exampleInputPassword1">Password</label>
@@ -56,6 +57,7 @@ function Login() {
                     }} />
                 </div>
                 <button type="submit" className="btn btn-primary" onClick={login}>Submit</button>
+                <Link className="nav-link active" aria-current="page" to="/signup">Signup</Link>
             </form>
         </>
     );

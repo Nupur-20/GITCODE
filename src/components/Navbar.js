@@ -40,10 +40,10 @@ function Navbar(props) {
                                     You
                                 </Link>
                                 <ul className="dropdown-menu">
-                                    <li><Link className="dropdown-item" href="/profile">Profile</Link></li>
-                                    <li><Link className="dropdown-item" href="/credits">Credits</Link></li>
-                                    <li><Link className="dropdown-item" href="/title">Title</Link></li>
-                                    <li><Link className="dropdown-item" href="/history">History</Link></li>
+                                    <li><Link className="dropdown-item" to="/profile">Profile</Link></li>
+                                    <li><Link className="dropdown-item" to="/credits">Credits</Link></li>
+                                    <li><Link className="dropdown-item" to="/title">Title</Link></li>
+                                    <li><Link className="dropdown-item" to="/history">History</Link></li>
                                 </ul>
                             </li>
 

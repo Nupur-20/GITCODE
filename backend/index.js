@@ -10,7 +10,16 @@ const port=5000
 app.use(bodyParser.json()) // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true }))
 
-app.use(cors());
+
+// signup was giving problem so added this
+const corsOptions={
+    origin: '*',
+    credentials: true,            //access-control-allow-credentials:true
+    optionSuccessStatus: 200,
+}
+app.use(cors(corsOptions))
+//
+
 app.use('/api/problems/',require('./routes/fetchProblems'));
 app.use('/api/user/',require('./routes/user'));
 app.listen(port,() => {

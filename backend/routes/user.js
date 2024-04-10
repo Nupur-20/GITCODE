@@ -4,10 +4,7 @@ const User=require('../models/User');
 const bcrypt=require('bcryptjs');
 const jwt=require('jsonwebtoken');
 const { body,validationResult }=require('express-validator');// to validate details entered by user
-
-
-
-
+const authenticateToken=require('../middlewares/authenticate');
 require('dotenv').config();
 // Router 1 for signup of a user
 router.post('/signup',[
@@ -21,12 +18,11 @@ router.post('/signup',[
         const err=validationResult(req);
         if (!err.isEmpty()) {
             // used 'return' because we didn't used 'send' here as we needed to return 'json' data
-            return res.json(err);
+            return res.status(400).json(err);
         }
-
         const { username,name,email,password,dob,address }=req.body;
 
-
+        console.log(username)
         // Check that user already exists or not
         let user=await User.findOne({ Email: email });
         if (user) {
@@ -37,7 +33,7 @@ router.post('/signup',[
         if (user) {
             res.status(400).send("Sorry!! Username already Exists");
         }
-
+        console.log(username)
 
         // salting the password and getting secured password
         const salt=await bcrypt.genSalt(10);
@@ -65,11 +61,13 @@ router.post('/signup',[
 
         res.send({ authToken });
     } catch (error) {
+        console.log("here");
         console.log(error)
         res.status(500).send('Internal Server Error');
     }
 })
 
+// Router 2 for login user
 router.post('/login',async (req,res) => {
     try {
         const { email,password }=req.body;
@@ -106,6 +104,20 @@ router.post('/login',async (req,res) => {
     } catch (error) {
         console.log(error)
         res.status(500).send('Internal Server Error');
+    }
+})
+
+
+// Router 3 for fetch profile of logged in user
+router.get('/profile',authenticateToken,async (req,res) => {
+    try {
+        const id=req.userId;
+        const user=await User.findById(id);
+        // console.log(user)''
+        res.send(user);
+    } catch (error) {
+        console.log(error);
+        res.status(500).send("Internal server error!!")
     }
 })
 
