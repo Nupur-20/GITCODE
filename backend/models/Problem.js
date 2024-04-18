@@ -19,11 +19,11 @@ const problemSchema=new Schema({
         required: true
     },
     Test_cases: {
-        type: [],
+        type: String,
         required: true
-    },
+    }, //for now taking string to test adding problem to database
     Hidden_Test_cases: {
-        type: [],
+        type: String,
         required: true
     },
     Total_Submissions: {
@@ -42,6 +42,10 @@ const problemSchema=new Schema({
         type: Boolean,
         required: true,
         default: false
+    },
+    Author: {
+        type: String,
+        required: true,
     }
 });
 

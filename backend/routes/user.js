@@ -97,7 +97,7 @@ router.post('/login',async (req,res) => {
         }
         // console.log("api req reached backend 5");
         const signature=process.env['SIGNATURE'];
-        const authToken=jwt.sign(data,signature);
+        const authToken=jwt.sign(data,signature,{ expiresIn: '2h' });
 
         console.log(authToken);
         res.send({ authToken });
@@ -113,7 +113,7 @@ router.get('/profile',authenticateToken,async (req,res) => {
     try {
         const id=req.userId;
         const user=await User.findById(id);
-        // console.log(user)''
+        // console.log(user)
         res.send(user);
     } catch (error) {
         console.log(error);

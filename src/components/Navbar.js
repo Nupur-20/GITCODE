@@ -41,9 +41,8 @@ function Navbar(props) {
                                 </Link>
                                 <ul className="dropdown-menu">
                                     <li><Link className="dropdown-item" to="/profile">Profile</Link></li>
-                                    <li><Link className="dropdown-item" to="/credits">Credits</Link></li>
-                                    <li><Link className="dropdown-item" to="/title">Title</Link></li>
-                                    <li><Link className="dropdown-item" to="/history">History</Link></li>
+                                    <li><Link className="dropdown-item" to="/problems">Problems</Link></li>
+                                    <li><Link className="dropdown-item" to="/addproblem">AddProblem</Link></li>
                                 </ul>
                             </li>
 

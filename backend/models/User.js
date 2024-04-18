@@ -6,7 +6,7 @@ const subSchema1=new Schema({
         type: String,
         required: true,
     }
-})
+}) // for problems
 const UserSchema=new Schema({
     Username: {
         type: String,
@@ -34,7 +34,8 @@ const UserSchema=new Schema({
         type: String,
         default: "White belt"
     },
-    Questions_solved: [subSchema1],
+    Questions_solved: [String],
+    Questions_Created: [String]
 });
 
 module.exports=mongoose.model('User',UserSchema);

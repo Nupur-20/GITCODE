@@ -12,9 +12,14 @@ function Problem_list(props) {
     const tag=props.tag;
     const statement=props.problem_statement;
     const cases=props.test_cases;
+    const code=props.code;
+    const hiddencases=props.hiddencases;
+    const verified=props.verified;
     const func1=() => {
         sharedData.set_statement(statement);
         sharedData.set_cases(cases);
+        sharedData.set_hiddencases(hiddencases);
+        sharedData.set_verified(verified);
     }
     return (
         <>
@@ -27,6 +32,8 @@ function Problem_list(props) {
                             </Link>
                         </div>
                         {tag}
+                        <br />
+                        {verified? "verified":"Not verified"}
                     </div>
                     <span class="badge bg-primary rounded-pill">{correct}</span>
                 </li>
@@ -40,4 +47,3 @@ Problem_list.propTypes={
 }
 
 export default Problem_list
-

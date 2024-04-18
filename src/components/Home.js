@@ -10,21 +10,21 @@ function Home(props) {
                 </header>
                 <div className="content my-5">
                     <main>
-                        <section class="mx-1 my-3">
+                        <section className="mx-1 my-3">
                             <h2>
-                                <h2>Learn to Code</h2>
+                                <p>Learn to Code</p>
                                 <p>Start your coding journey with our tutorials and resources.</p>
                             </h2>
                         </section>
-                        <section class="mx-1 my-3">
+                        <section className="mx-1 my-3">
                             <h2>
-                                <h2>Practice Coding</h2>
+                                <p>Practice Coding</p>
                                 <p>Test your skills with coding challenges and exercises.</p>
                             </h2>
                         </section>
-                        <section class="mx-1 my-3">
+                        <section className="mx-1 my-3">
                             <h2>
-                                <h2>Connect with Developers</h2>
+                                <p>Connect with Developers</p>
                                 <p>Join our community to collaborate and learn from others.</p>
                             </h2>
                         </section>
@@ -32,7 +32,7 @@ function Home(props) {
                 </div>
                 <center>
                     <div className="button">
-                        <button type="button" class="btn btn-secondary">
+                        <button type="button" className="btn btn-secondary">
                             Login/SignUp
                         </button>
                     </div>
