@@ -1,16 +1,25 @@
 import React from "react"
 import PropTypes from "prop-types"
+import { useNavigate } from "react-router-dom";
 
 function Home(props) {
-    return (
-        <div className="m">
-            <div className="home my-3 mx-3">
-                <header>
-                    <h1 className="heading">
-                        Welcome to <br></br>GITCODE
-                    </h1>
-                </header>
-                {/* <div className="content my-5">
+  const navigate=useNavigate();
+  const getStarted=async () => {
+    try {
+      navigate("/profile");
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  return (
+    <div className="m">
+      <div className="home my-3 mx-3">
+        <header>
+          <h1 className="heading">
+            Welcome to <br></br>GITCODE
+          </h1>
+        </header>
+        {/* <div className="content my-5">
           <main>
             <section class="mx-1 my-3">
               <h2>
@@ -32,15 +41,15 @@ function Home(props) {
             </section>
           </main>
         </div> */}
-                <center>
-                    <div className="button">
-                        <button type="button" class="btn btn-secondary">
-                            Get Started
-                        </button>
-                    </div>
-                </center>
-            </div>
-            {/* <footer>
+        <center>
+          <div className="button">
+            <button type="button" class="btn btn-secondary" onClick={getStarted}>
+              Get Started
+            </button>
+          </div>
+        </center>
+      </div>
+      {/* <footer>
         <center>
           <div className="testimonials mx-3 my-3">
             <section className="testimonials">
@@ -60,8 +69,8 @@ function Home(props) {
           </div>
         </center>
       </footer> */}
-        </div>
-    )
+    </div>
+  )
 }
 
 Home.propTypes={}

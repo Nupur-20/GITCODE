@@ -1,6 +1,8 @@
 import React,{ useEffect,useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 
 function Profile() {
+    const navigate=useNavigate();
     const [name,setName]=useState("none");
     const [username,setUsername]=useState("none");
     const [title,setTitle]=useState("none");
@@ -23,6 +25,7 @@ function Profile() {
         }
         else {
             console.log("Failed to fetch user!!");
+            navigate("/login");
         }
     }
     const logout=() => {
@@ -30,6 +33,7 @@ function Profile() {
             localStorage.setItem('authToken',"");
             localStorage.setItem('timeStamp',"");
             console.log("Logout Successful!!");
+            navigate("/login");
         } catch (error) {
             console.error("Logout Failed!!!");
         }

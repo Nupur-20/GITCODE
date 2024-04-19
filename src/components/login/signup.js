@@ -173,9 +173,9 @@ function Signup() {
                                     setPassword(e.target.value)
                                 }} />
 
-                                <div className="d-flex justify-content-center mb-4">
+                                {/* <div className="d-flex justify-content-center mb-4">
                                     <MDBCheckbox name="flexCheck" value="" id="flexCheckDefault" label="Subscribe to our newsletter" />
-                                </div>
+                                </div> */}
 
                                 <MDBBtn className="w-100 mb-4" size="md" onClick={signup}>
                                     Signup

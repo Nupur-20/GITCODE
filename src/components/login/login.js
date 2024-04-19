@@ -148,7 +148,7 @@ function Login() {
                                 }} />
 
                                 <div className="d-flex justify-content-center mb-4">
-                                    <MDBCheckbox name="flexCheck" value="" id="flexCheckDefault" label="Subscribe to our newsletter" />
+                                    <MDBCheckbox name="flexCheck" value="" id="flexCheckDefault" label="Login as an admin" />
                                 </div>
 
                                 <MDBBtn className="w-100 mb-4" size="md" onClick={login}>
