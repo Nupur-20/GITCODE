@@ -30,8 +30,6 @@ router.post("/addproblem",authenticateToken,async (req,res) => {
                 P_title: title,
                 Statement: statement,
                 Tag: tag,
-                Hidden_Test_cases: hiddencases,
-                Test_cases: testcases,
                 Author: id //added user's id as auther
             });
 
@@ -58,6 +56,52 @@ router.post("/addproblem",authenticateToken,async (req,res) => {
     }
 })
 
+router.post("/addtestcase",authenticateToken,async (req,res) => {
+    try {
+        console.log("yes here it is");
+        const prob_id=req.body.prob_id;
+        const input=req.body.input;
+        const output=req.body.output;
+        console.log(prob_id);
+        console.log(output);
+        console.log(input);
+        const input_array=input.split("\n");
+        let final_input_array=[];
+        input_array.forEach(element => {
+            temp=element.split(' ');
+            final_input_array.push(temp);
+            // temp.forEach(element2 => {
+            //     final_input_array.push(element2);
+            // })
+        });
+        console.log(final_input_array)
+
+        const output_array=output.split("\n");
+        let final_output_array=[];
+        output_array.forEach(element => {
+            temp=element.split(' ');
+            final_output_array.push(temp);
+            // temp.forEach(element2 => {
+            //     final_output_array.push(element2);
+            // })
+        });
+        console.log(final_output_array)
+        // res.status(200).json("done");
+        let problem=await Problem.findById(prob_id);
+        await problem.updateOne({
+            $push: {
+                Test_cases: { input: final_input_array,output: final_output_array },
+            }
+        })
+        res.status(200).json("done");
+    } catch (error) {
+        console.log("Error in adding test case");
+        console.log(error);
+        res.status(500).send("Internal Server Error!!");
+    }
+})
+
+
 router.get("/allproblems",authenticateToken,async (req,res) => {
     try {
         console.log("In fetching all Problems")
@@ -76,6 +120,23 @@ router.get("/allproblems",authenticateToken,async (req,res) => {
         res.send(Data);
     } catch (error) {
         console.log("Coudn't fetch user problems(backend)");
+        console.log(error);
+        res.status(500).send("Internal Server Error!!!");
+    }
+})
+
+router.post("/alltestcases",authenticateToken,async (req,res) => {
+    try {
+        const prob_id=req.body.probid;
+        const problem=await Problem.findById(prob_id);
+        if (!problem) {
+            res.status(400).send("Failed to fetch test cases")
+        }
+        const testcases=problem.Test_cases;
+        // console.log(testcases[0].input);
+        res.status(200).json({ testcases });
+    } catch (error) {
+        console.log("Coudn't fetch test cases");
         console.log(error);
         res.status(500).send("Internal Server Error!!!");
     }
@@ -150,4 +211,5 @@ router.post("/updateproblem",authenticateToken,async (req,res) => {
         res.status(500).send("Internal Server Error");
     }
 })
+
 module.exports=router;

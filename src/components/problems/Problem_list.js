@@ -15,11 +15,11 @@ function Problem_list(props) {
     const code=props.code;
     const hiddencases=props.hiddencases;
     const verified=props.verified;
-    const func1=() => {
-        sharedData.set_statement(statement);
-        sharedData.set_cases(cases);
-        sharedData.set_hiddencases(hiddencases);
-        sharedData.set_verified(verified);
+    const func1=async () => {
+        await sharedData.set_statement(statement);
+        await sharedData.set_cases(cases);
+        await sharedData.set_hiddencases(hiddencases);
+        await sharedData.set_verified(verified);
     }
     return (
         <>
@@ -27,7 +27,7 @@ function Problem_list(props) {
                 <li class="list-group-item d-flex justify-content-between align-items-start mx-3 my-2 ">
                     <div class="ms-2 me-auto">
                         <div class="fw-bold">
-                            <Link onClick={func1()} to="/problem_statement">
+                            <Link onClick={func1} to="/problem_statement">
                                 {title}
                             </Link>
                         </div>

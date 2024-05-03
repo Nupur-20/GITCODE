@@ -1,6 +1,16 @@
 const mongoose=require('mongoose');
 const { Schema }=mongoose;
 
+const testcase=new Schema({
+    input: {
+        type: [],
+        required: true
+    },
+    output: {
+        type: [],
+        required: true
+    }
+})
 const problemSchema=new Schema({
     P_code: {
         type: String,
@@ -18,14 +28,8 @@ const problemSchema=new Schema({
         type: String,
         required: true
     },
-    Test_cases: {
-        type: String,
-        required: true
-    }, //for now taking string to test adding problem to database
-    Hidden_Test_cases: {
-        type: String,
-        required: true
-    },
+    Test_cases: [testcase], //for now taking string to test adding problem to database
+    Hidden_Test_cases: [testcase],
     Total_Submissions: {
         type: Number,
         default: 0

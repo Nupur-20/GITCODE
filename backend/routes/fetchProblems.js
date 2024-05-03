@@ -62,6 +62,18 @@ router.get('/all',async (req,res) => {
 //     }
 // })
 
+// router.get('/lc',async (req,res) => {
+//     try {
+//         const response=await fetch(`https://leetcode.com/api/problems/two-sum`,{
+//             method: 'GET'
+//         });
+//         console.log(response.json());
+//     } catch (error) {
+//         console.log(error);
+//         res.status(500).send('Internal Server Error!!!');
+//     }
+// })
+
 //codewars
 router.get('/codewars',async (req,res) => {
     try {
@@ -80,10 +92,12 @@ router.get('/codewars',async (req,res) => {
                 method: 'GET'
             });
             const q2=await ques2.json();
+            console.log(q2);
             const temp={ 'P_title': q2['name'],'Statement': q2['description'] };
             Data.push(temp);
         }));
         console.log("Request done 1");
+        // console.log(Data[0]);
         res.send(Data);
     } catch (error) {
         console.log(error);

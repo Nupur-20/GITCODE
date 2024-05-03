@@ -8,8 +8,11 @@ function Practice(props) {
     const [Data,setData]=useState([]);
 
     const fetchData=async () => {
-        console.log("hi");
-        return await fetch("http://localhost:5000/api/problems/codewars")
+        // console.log("hi");
+        // return await fetch("http://localhost:5000/api/problems/lc")
+        //     .then((response) => response.json())
+        //     .then((dat) => setData(dat));
+        return await fetch("http://localhost:5000/api/problems/all")
             .then((response) => response.json())
             .then((dat) => setData(dat));
     }

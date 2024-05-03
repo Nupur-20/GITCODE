@@ -23,6 +23,7 @@ app.use(cors(corsOptions))
 app.use('/api/problems/',require('./routes/fetchProblems'));
 app.use('/api/user/',require('./routes/user'));
 app.use('/api/userproblems/',require('./routes/userProblems'));
+app.use('/api/compiling/',require('./routes/compiling'));
 
 app.listen(port,() => {
     console.log(`Example app listening on port ${port}`)

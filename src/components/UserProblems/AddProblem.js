@@ -4,8 +4,8 @@ function AddProblem() {
     const [title,setTitle]=useState("");
     const [code,setCode]=useState("");
     const [statement,setStatement]=useState("");
-    const [testcases,setTestcases]=useState("");
-    const [hiddentestcases,setHiddenTestcases]=useState("");
+    // const [testcases,setTestcases]=useState("");
+    // const [hiddentestcases,setHiddenTestcases]=useState("");
     const [tag,setTag]=useState("Math");
     const add=async () => {
         try {
@@ -26,8 +26,8 @@ function AddProblem() {
                         "code": code,
                         "title": title,
                         "statement": statement,
-                        "testcases": testcases,
-                        "hiddencases": hiddentestcases,
+                        // "testcases": testcases,
+                        // "hiddencases": hiddentestcases,
                         "tag": tag
                     })
                 });
@@ -59,14 +59,6 @@ function AddProblem() {
                 <div className="form-group">
                     <label htmlFor="statement">Problem Statement</label>
                     <textarea className="form-control" id="statement" rows="3" onChange={(e) => { setStatement(e.target.value) }} value={statement}></textarea>
-                </div>
-                <div className="form-group">
-                    <label htmlFor="testcases">Test Cases</label>
-                    <textarea className="form-control" id="testcases" rows="3" onChange={(e) => { setTestcases(e.target.value) }} value={testcases}></textarea>
-                </div>
-                <div className="form-group">
-                    <label htmlFor="testcases">Hiddem Test Cases</label>
-                    <textarea className="form-control" id="hiddentestcases" rows="3" onChange={(e) => { setHiddenTestcases(e.target.value) }} value={hiddentestcases}></textarea>
                 </div>
                 <div className="form-group">
                     <label htmlFor="exampleFormControlSelect1">Problem Tag</label>
