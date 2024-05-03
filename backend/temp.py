@@ -2,7 +2,8 @@ import sys
 # Input format is x=sys.argv[i]
 # Enter your code here
 x=int(sys.argv[1])
+sum=0
 for i in range(x):
-    y=int(sys.argv[i*2+2])
-    z=int(sys.argv[i*2+3])
-    print(y+z)
+    y=int(sys.argv[i+2])
+    sum+=y
+print(sum)

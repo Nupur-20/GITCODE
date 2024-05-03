@@ -22,6 +22,7 @@ function Problem_list(props) {
         sharedData.set_cases(cases);
         sharedData.set_hiddencases(hiddencases);
         sharedData.set_verified(verified);
+        sharedData.setProbid(id);
     }
     const delete_it=async () => {
         try {
