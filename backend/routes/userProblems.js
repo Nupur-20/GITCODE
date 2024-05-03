@@ -171,6 +171,29 @@ router.post("/deleteproblem",authenticateToken,async (req,res) => {
     }
 })
 
+router.post("/deletetestcase",authenticateToken,async (req,res) => {
+    try {
+        const prob_id=req.body.probid;
+        const test_id=req.body.testid;
+        const problem=await Problem.findById(prob_id);
+        if (!problem) {
+            res.status(400).send("Failed to fetch test case")
+        }
+        console.log(test_id);
+        const response=await problem.updateOne({
+            $pull: {
+                Test_cases: { _id: test_id },
+            }
+        })
+        console.log(response);
+        res.status(200).json({ message: "Test case deletion is done" })
+    } catch (error) {
+        console.log("Couldn't delete testcase");
+        console.log(error);
+        console.status(500).send("Internal Server Error");
+    }
+})
+
 router.post("/updateproblem",authenticateToken,async (req,res) => {
     try {
         // Fetch user by userid

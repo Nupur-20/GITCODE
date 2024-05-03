@@ -1,6 +1,7 @@
 import React,{ useState } from 'react'
-
+import { useNavigate } from 'react-router-dom';
 const Add_Test_case=(probs) => {
+    const navigate=useNavigate();
     const [input,setInput]=useState("");
     const [output,setOutput]=useState("");
     const add_test_case=async () => {
@@ -21,6 +22,8 @@ const Add_Test_case=(probs) => {
             })
             const res=await response.json();
             console.log(res);
+            setOutput("");
+            setInput("");
         } catch (error) {
             console.log("Error in adding test case");
             console.log(error);

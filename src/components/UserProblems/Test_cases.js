@@ -50,7 +50,25 @@ const Test_cases=(probs) => {
             </div>
             <ol className="list-group list-group-numbered">
                 {data&&data.length>0&&data.map((item) => (
-                    <li key={item._id}><button type="button" class="btn btn-success" onClick={() => { sharedData.setInput(item.input); sharedData.setOutput(item.output); navigate("/testcaseitem") }}>Testcase</button></li>
+                    <li key={item._id}>
+                        <button type="button" class="btn btn-success" onClick={() => { sharedData.setInput(item.input); sharedData.setOutput(item.output); navigate("/testcaseitem") }}>Testcase</button>
+                        <button type="button" class="btn btn-danger" onClick={async () => {
+                            const response=await fetch("http://localhost:5000/api/userproblems/deletetestcase",{
+                                method: "POST",
+                                mode: "cors",
+                                headers: {
+                                    'Accept': 'application/json',
+                                    'Content-Type': 'application/json',
+                                    'Auth-Token': localStorage.getItem('authToken')
+                                },
+                                body: JSON.stringify({
+                                    'probid': probs.prob_id,
+                                    'testid': item._id
+                                })
+                            })
+                            navigate("/problems")
+                        }}>x</button>
+                    </li>
                 ))}
             </ol>
         </>
