@@ -5,6 +5,7 @@ const subSchema1=new Schema({
     P_id: {
         type: String,
         required: true,
+        unique: true
     }
 }) // for problems
 const UserSchema=new Schema({
@@ -31,8 +32,8 @@ const UserSchema=new Schema({
         type: String,
     },
     Title: {
-        type: String,
-        default: "White belt"
+        type: Number,
+        default: 0
     },
     Questions_solved: [String],
     Questions_Created: [String]

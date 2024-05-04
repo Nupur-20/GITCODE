@@ -90,13 +90,17 @@ router.post("/runit",authenticateToken,async (req,res) => {
             Correct_Submissions: problem.Correct_Submissions+passed
         })
         const user=await User.findById(user_id);
-        // if (!user.find({ Questions_solved: { $elemMatch: { $eq: prob_id } } })) {
-        //     await user.updateOne({
-        //         $push: {
-        //             Questions_solved: prob_id
-        //         }
-        //     })
-        // }
+        await user.updateOne({
+            $addToSet: {
+                Questions_solved: prob_id
+            }
+        })
+
+        // if total problems solved exceed 3,6,9,12 or 15 then title increased by 1
+        if ((user.Questions_solved.length)%3==0&&user.Title<6) {
+            user.Title+=1;
+        }
+
         res.status(200).send({ passed: passed,compiled: 1,message: "All test cases compiled succesfully",output: Output });
     } catch (error) {
         console.log("Error in compiling(Backend)");
