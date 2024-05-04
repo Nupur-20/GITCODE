@@ -77,7 +77,6 @@ function Login() {
     const login=async (e) => {
         try {
             e.preventDefault();
-            navigate("/");
             const response=await fetch("http://localhost:5000/api/user/login",{
                 method: "POST",
                 mode: "cors",
@@ -90,7 +89,6 @@ function Login() {
                     "password": password
                 })
             });
-
             if (response.ok) {
                 const token=await response.json();
                 setauthToken(token.authToken);
@@ -99,6 +97,7 @@ function Login() {
                 localStorage.setItem('authToken',token.authToken);
                 localStorage.setItem('timeStamp',currTime);
                 console.log("Login successful");
+                navigate("/");
             } else {
                 console.error("Login failed");
             }

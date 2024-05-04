@@ -70,10 +70,12 @@ router.post('/signup',[
 // Router 2 for login user
 router.post('/login',async (req,res) => {
     try {
+        console.log("In login")
         const { email,password }=req.body;
 
         // search the user by email
         let user=await User.findOne({ Email: email });
+        // console.log(user);
         // console.log("api req reached backend 1");
         if (!user) {
             // console.log("api req reached backend 3");
@@ -87,7 +89,6 @@ router.post('/login',async (req,res) => {
             // console.log("api req reached backend 4");
             return res.status(400).send("Invalid Password!!");
         }
-
         // Now that the user is verified
         // generate the authToken and return it to user
         const data={

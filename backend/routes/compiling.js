@@ -2,13 +2,16 @@ const express=require('express');
 const router=express.Router();
 var fs=require('fs');
 const Problem=require('../models/Problem');
+const authenticateToken=require('../middlewares/authenticate');
+const User=require('../models/User');
 
-router.post("/runit",async (req,res) => {
+router.post("/runit",authenticateToken,async (req,res) => {
     try {
         // console.log(req.body.code);
         const code=req.body.code;
         // const input=req.body.input;
         const prob_id=req.body.probid;
+        const user_id=req.userId;
         console.log(prob_id)
         // save the code in python file first
         fs.writeFile('./temp.py',code,function (err) {
@@ -18,6 +21,9 @@ router.post("/runit",async (req,res) => {
         });
 
         let problem=await Problem.findById(prob_id);
+        await problem.updateOne({
+            Total_Submissions: problem.Total_Submissions+1,
+        })
         const testcases=problem.Test_cases;
 
         const util=require('util');
@@ -78,7 +84,20 @@ router.post("/runit",async (req,res) => {
             await ls(testcases[i].input,testcases[i].output);
         }
         console.log(Output);
-        res.status(200).send({ passed: passed,compiled: 1,message: "All test cases runned succesfully",output: Output });
+
+        // if test cases passed then increment correct submissions and also insert this problem id in solved problems of user
+        await problem.updateOne({
+            Correct_Submissions: problem.Correct_Submissions+passed
+        })
+        const user=await User.findById(user_id);
+        // if (!user.find({ Questions_solved: { $elemMatch: { $eq: prob_id } } })) {
+        //     await user.updateOne({
+        //         $push: {
+        //             Questions_solved: prob_id
+        //         }
+        //     })
+        // }
+        res.status(200).send({ passed: passed,compiled: 1,message: "All test cases compiled succesfully",output: Output });
     } catch (error) {
         console.log("Error in compiling(Backend)");
         console.log(error);
