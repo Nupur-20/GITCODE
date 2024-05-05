@@ -65,6 +65,10 @@ function Problem_list(props) {
         sharedData.setProbid(id);
         navigate("/testcases");
     }
+    const goto_comments=async () => {
+        sharedData.setProbid(id);
+        navigate("/comments");
+    }
     return (
         <>
             <div>
@@ -81,6 +85,7 @@ function Problem_list(props) {
                         <button type="button" className="btn btn-danger" onClick={delete_it}>Delete</button>
                         <button type="button" class="btn btn-primary" onClick={update_it}>Update</button>
                         <button type="button" class="btn btn-success" onClick={test_cases}>Edit TestCases</button>
+                        <button type="button" class="btn btn-warning" onClick={goto_comments}>Comments</button>
                     </div>
                     <span className="badge bg-primary rounded-pill">{correct}</span>
                 </li>

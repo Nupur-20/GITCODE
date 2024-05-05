@@ -65,45 +65,50 @@
 
 // export default Login;
 
-import React,{ useState } from 'react';
-import { Link,useNavigate } from 'react-router-dom';
+import React,{ useState } from "react"
+import { Link,useNavigate } from "react-router-dom"
 import { MDBBtn,MDBContainer,MDBRow,MDBCol,MDBCard,MDBCardBody,MDBInput,MDBCheckbox,MDBIcon } from "mdb-react-ui-kit"
+import { toast } from "react-toastify"
+import 'react-toastify/dist/ReactToastify.css'
 
 function Login() {
-    const navigate=useNavigate();
-    const [authToken,setauthToken]=useState("");
-    const [password,setPassword]=useState("");
-    const [email,setEmail]=useState("");
-    const login=async (e) => {
+    const navigate=useNavigate()
+    const [authToken,setauthToken]=useState("")
+    const [password,setPassword]=useState("")
+    const [email,setEmail]=useState("")
+    const notifysuccess=msg => toast.success(msg)
+    const notifyerror=error => toast.error(error)
+    const login=async e => {
         try {
-            e.preventDefault();
+            e.preventDefault()
             const response=await fetch("http://localhost:5000/api/user/login",{
                 method: "POST",
                 mode: "cors",
                 headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    "email": email,
-                    "password": password
-                })
-            });
+                    email: email,
+                    password: password,
+                }),
+            })
             if (response.ok) {
-                const token=await response.json();
-                setauthToken(token.authToken);
-                const currDate=new Date().toLocaleDateString();
-                const currTime=new Date().toLocaleTimeString();
-                localStorage.setItem('authToken',token.authToken);
-                localStorage.setItem('timeStamp',currTime);
-                console.log("Login successful");
-                navigate("/");
+                const token=await response.json()
+                setauthToken(token.authToken)
+                const currDate=new Date().toLocaleDateString()
+                const currTime=new Date().toLocaleTimeString()
+                localStorage.setItem("authToken",token.authToken)
+                localStorage.setItem("timeStamp",currTime)
+                console.log("Login successful")
+                notifysuccess("Welcome..................");
+                navigate("/")
             } else {
-                console.error("Login failed");
+                console.error("Login failed")
             }
         } catch (error) {
-            console.log("here it comes");
-            console.error("Error:",error);
+            console.log("here it comes")
+            console.error("Error:",error)
             // Navigate("/");
         }
     }
@@ -139,12 +144,24 @@ function Login() {
                                     </MDBCol>
                                 </MDBRow> */}
 
-                                <MDBInput wrapperClass="mb-4" label="Email" id="form3" type="email" onChange={(e) => {
-                                    setEmail(e.target.value)
-                                }} />
-                                <MDBInput wrapperClass="mb-4" label="Password" id="form4" type="password" onChange={(e) => {
-                                    setPassword(e.target.value)
-                                }} />
+                                <MDBInput
+                                    wrapperClass="mb-4"
+                                    label="Email"
+                                    id="form3"
+                                    type="email"
+                                    onChange={e => {
+                                        setEmail(e.target.value)
+                                    }}
+                                />
+                                <MDBInput
+                                    wrapperClass="mb-4"
+                                    label="Password"
+                                    id="form4"
+                                    type="password"
+                                    onChange={e => {
+                                        setPassword(e.target.value)
+                                    }}
+                                />
 
                                 <div className="d-flex justify-content-center mb-4">
                                     <MDBCheckbox name="flexCheck" value="" id="flexCheckDefault" label="Login as an admin" />
@@ -154,7 +171,9 @@ function Login() {
                                     Login
                                 </MDBBtn>
 
-                                <Link className="nav-link active" aria-current="page" to="/signup">Signup</Link>
+                                <Link className="nav-link active" aria-current="page" to="/signup">
+                                    Signup
+                                </Link>
                                 {/* <div className="text-center">
                                     <p>or</p>
                                     <div className="button-lo">

@@ -9,6 +9,16 @@ const testcase=new Schema({
     output: {
         type: [],
         required: true
+    },
+})
+const comment=new Schema({
+    message: {
+        type: String,
+        required: true
+    },
+    author: {
+        type: String,
+        required: true
     }
 })
 const problemSchema=new Schema({
@@ -47,6 +57,7 @@ const problemSchema=new Schema({
         required: true,
         default: false
     },
+    Comments: [comment],
     Author: {
         type: String,
         required: true,
