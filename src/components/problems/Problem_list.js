@@ -1,32 +1,35 @@
 import React,{ useContext } from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
 import MyContext from '../../context/Mycontext';
 
 
 function Problem_list(props) {
+    const navigate=useNavigate();
     const sharedData=useContext(MyContext);
     const title=props.title;
     const total=props.total_submissions;
     const correct=props.correct_submissions;
     const tag=props.tag;
     const statement=props.problem_statement;
-    const cases=props.test_cases;
     const code=props.code;
-    const hiddencases=props.hiddencases;
     const verified=props.verified;
-    const func1=async () => {
-        await sharedData.set_statement(statement);
-        await sharedData.set_cases(cases);
-        await sharedData.set_hiddencases(hiddencases);
-        await sharedData.set_verified(verified);
+    const id=props.id;
+    const func1=() => {
+        sharedData.set_statement(statement);
+        sharedData.set_verified(verified);
+        sharedData.setProbid(id);
+    }
+    const goto_comments=async () => {
+        sharedData.setProbid(id);
+        navigate("/comments");
     }
     return (
         <>
             <div>
-                <li class="list-group-item d-flex justify-content-between align-items-start mx-3 my-2 ">
-                    <div class="ms-2 me-auto">
-                        <div class="fw-bold">
+                <li className="list-group-item d-flex justify-content-between align-items-start mx-3 my-2 ">
+                    <div className="ms-2 me-auto">
+                        <div className="fw-bold">
                             <Link onClick={func1} to="/problem_statement">
                                 {title}
                             </Link>
@@ -34,8 +37,12 @@ function Problem_list(props) {
                         {tag}
                         <br />
                         {verified? "verified":"Not verified"}
+                        {/* <button type="button" className="btn btn-danger" onClick={delete_it}>Delete</button>
+                        <button type="button" class="btn btn-primary" onClick={update_it}>Update</button>
+                        <button type="button" class="btn btn-success" onClick={test_cases}>Edit TestCases</button> */}
+                        <button type="button" class="btn btn-warning" onClick={goto_comments}>Comments</button>
                     </div>
-                    <span class="badge bg-primary rounded-pill">{correct}</span>
+                    <span className="badge bg-primary rounded-pill">{correct}</span>
                 </li>
             </div>
         </>

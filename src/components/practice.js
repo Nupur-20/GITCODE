@@ -21,15 +21,17 @@ function Practice(props) {
     },[])
 
     return (
-        <main>
+        <>
             <h1>Problems</h1>
             <ol class="list-group list-group-numbered">
-                {Data&&Data.length>0&&Data.map((item) => (
-                    // <li key={item._id}>{item.playlist}-----{item.user}</li>
-                    <Problem_list title={item.P_title} total_submissions={item.Total_Submissions} correct_submissions={item.Correct_Submissions} tag={item.Tag} problem_statement={item.Statement} test_cases={item.Test_cases} />
-                ))}
+                <li>
+                    {Data&&Data.length>0&&Data.map((item) => (
+                        // <li key={item._id}>{item.playlist}-----{item.user}</li>
+                        <Problem_list title={item.P_title} total_submissions={item.Total_Submissions} correct_submissions={item.Correct_Submissions} tag={item.Tag} problem_statement={item.Statement} test_cases={item.Test_cases} />
+                    ))}
+                </li>
             </ol>
-        </main>
+        </>
     );
 }
 
