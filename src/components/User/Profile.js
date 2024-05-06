@@ -4,15 +4,17 @@ import imag3 from "../Images/Ranks/3.svg"
 import imag4 from "../Images/Ranks/4.svg"
 import imag5 from "../Images/Ranks/5.svg"
 import imag6 from "../Images/Ranks/6.svg"
-import React,{ useEffect,useState } from "react"
+import React,{ useContext,useEffect,useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { PieChart } from "@mui/x-charts/PieChart"
+import MyContext from "../../context/Mycontext"
 
 function Profile() {
     const [data,setData]=useState([
         { id: 0,value: 10,label: "Correct" },
         { id: 1,value: 15,label: "Wrong" },
     ]);
+    const sharedData=useContext(MyContext);
     const [imag,setImag]=useState(imag1);
     const titles={ 0: "Bronze",1: "Silver",2: "Golden",3: "Crystal",4: "Champion",5: "Titan" };
     const navigate=useNavigate();
@@ -104,6 +106,7 @@ function Profile() {
             localStorage.setItem("authToken","")
             localStorage.setItem("timeStamp","")
             localStorage.setItem("admin",0)
+            sharedData.setLoggedIn(0);
             console.log("Logout Successful!!")
             navigate("/login")
         } catch (error) {

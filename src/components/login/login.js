@@ -45,7 +45,8 @@ function Login() {
                     localStorage.setItem("admin",0);
                     sharedData.setAdmin(0);
                 }
-                notifysuccess("Welcome..................");
+                sharedData.setLoggedIn(1);
+                notifysuccess("Successfully Logged in...Welcome!!");
                 navigate("/")
             } else {
                 console.error("Login failed")
@@ -107,9 +108,9 @@ function Login() {
                                     }}
                                 />
 
-                                <div className="d-flex justify-content-center mb-4">
+                                {/* <div className="d-flex justify-content-center mb-4">
                                     <MDBCheckbox name="flexCheck" value="" id="flexCheckDefault" label="Login as an admin" />
-                                </div>
+                                </div> */}
 
                                 <MDBBtn className="w-100 mb-4" size="md" onClick={login}>
                                     Login

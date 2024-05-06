@@ -34,9 +34,10 @@ function App() {
   const [intput,setInput]=useState([]);
   const [output,setOutput]=useState([]);
   const [admin,setAdmin]=useState(0);
+  const [loggedIn,setLoggedIn]=useState(0);
   return (
     <>
-      <MyContext.Provider value={{ set_statement,set_cases,set_hiddencases,set_verified,setCode,setTitle,setTag,setId,setProbid,setInput,setOutput,probid,admin,setAdmin }}>
+      <MyContext.Provider value={{ set_statement,set_cases,set_hiddencases,set_verified,setCode,setTitle,setTag,setId,setProbid,setInput,setOutput,probid,admin,setAdmin,setLoggedIn,loggedIn }}>
         <Router>
           <Navbar />
           <Routes>

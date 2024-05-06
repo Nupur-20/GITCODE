@@ -1,10 +1,13 @@
 import React,{ useEffect,useState } from "react"
 import PropTypes from "prop-types"
 import { Link,useLocation } from "react-router-dom"
+import { useContext } from "react"
+import MyContext from "../context/Mycontext"
 
 function Navbar(props) {
     const location=useLocation()
     const [login,setLogin]=useState(0);
+    const sharedData=useContext(MyContext);
     const check_login=async () => {
         try {
             const response=await fetch("http://localhost:5000/api/user/profile",{
@@ -26,7 +29,7 @@ function Navbar(props) {
             console.log(error);
         }
     }
-    useEffect(() => { check_login() },[])
+    useEffect(() => { check_login() },[sharedData.loggedIn])
     return (
         <div className="n" style={{}}>
             <nav className="navbar navbar-expand-lg bg-body-tertiary">

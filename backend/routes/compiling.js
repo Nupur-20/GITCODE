@@ -106,10 +106,9 @@ router.post("/runit",authenticateToken,async (req,res) => {
 
             // if total problems solved exceed 3,6,9,12 or 15 then title increased by 1
 
-            const solved=user.Questions_solved.length;
-            const title=user?.Title;
-            console.log(user.Title);
-            console.log(solved);
+            const updatedUser=await User.findById(user_id);
+            const solved=updatedUser.Questions_solved.length;
+            const title=updatedUser?.Title;
             if ((solved>=3&&title<1)||(solved>=6&&title<2)||(solved>=9&&title<3)||(solved>=12&&title<4)||(solved>=15&&title<5)) {
                 await user.updateOne({
                     Title: user.Title+1
