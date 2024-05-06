@@ -1,24 +1,31 @@
-import imag0 from "../Images/Ranks/5.svg"
+import imag1 from "../Images/Ranks/1.svg"
+import imag2 from "../Images/Ranks/2.svg"
+import imag3 from "../Images/Ranks/3.svg"
+import imag4 from "../Images/Ranks/4.svg"
+import imag5 from "../Images/Ranks/5.svg"
+import imag6 from "../Images/Ranks/6.svg"
 import React,{ useEffect,useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { PieChart } from "@mui/x-charts/PieChart"
 
 function Profile() {
-    const data=[
-        { id: 0,value: 10,label: "series A" },
-        { id: 1,value: 15,label: "series B" },
-        { id: 2,value: 20,label: "series C" },
-    ]
-    const imag=imag0
-    const titles={ 0: "white",1: "grey",2: "yellow",3: "green",4: "blue",5: "red",6: "black" }
-    const navigate=useNavigate()
-    const [name,setName]=useState("none")
-    const [username,setUsername]=useState("none")
-    const [title,setTitle]=useState(0)
+    const [data,setData]=useState([
+        { id: 0,value: 10,label: "Correct" },
+        { id: 1,value: 15,label: "Wrong" },
+    ]);
+    const [imag,setImag]=useState(imag1);
+    const titles={ 0: "Bronze",1: "Silver",2: "Golden",3: "Crystal",4: "Champion",5: "Titan" };
+    const navigate=useNavigate();
+    const [name,setName]=useState("none");
+    const [username,setUsername]=useState("none");
+    const [title,setTitle]=useState(0);
     const [email,setEmail]=useState("");
     const [admin,setAdmin]=useState("");
     const [backColor,setBackColor]=useState("#eee");
     const [textDecor,setTextDecor]=useState("");
+    const [prob_solved,setProb_solved]=useState(0);
+    const [correct,setCorrect]=useState(0);
+    const [wrong,setWrong]=useState(0);
     const fetchDetails=async () => {
         try {
             const response=await fetch("http://localhost:5000/api/user/profile",{
@@ -42,6 +49,48 @@ function Profile() {
                     setAdmin("ADMIN");
                     setTextDecor("2px 2px 5px red");
                 }
+                const rank=userData?.Title;
+                setProb_solved(userData?.Questions_solved.length);
+                setCorrect(userData?.Correct_submissions);
+                setWrong(userData?.Wrong_submissions);
+                // setData([
+                //     { id: 0,value: correct,label: "Correct" },
+                //     { id: 1,value: wrong,label: "Wrong" }
+                // ]);
+                console.log(data);
+                console.log(wrong);
+                switch (rank) {
+                    case 0:
+                        {
+                            setImag(imag1);
+                            break;
+                        }
+                    case 1:
+                        {
+                            setImag(imag2);
+                            break;
+                        }
+                    case 2:
+                        {
+                            setImag(imag3);
+                            break;
+                        }
+                    case 3:
+                        {
+                            setImag(imag4);
+                            break;
+                        }
+                    case 4:
+                        {
+                            setImag(imag5);
+                            break;
+                        }
+                    case 5:
+                        {
+                            setImag(imag6);
+                            break;
+                        }
+                }
             } else {
                 console.log("Failed to fetch user!!")
                 navigate("/login")
@@ -63,8 +112,12 @@ function Profile() {
     }
     useEffect(() => {
         // to fetch details of current user
+        setData([
+            { id: 0,value: correct,label: "Correct" },
+            { id: 1,value: wrong,label: "Wrong" }
+        ]);
         fetchDetails()
-    },[])
+    },[correct,wrong])
     return (
         <section style={{ backgroundColor: `${backColor}` }}>
             <div className="container py-5" style={{ marginTop: "10px" }}>
@@ -73,16 +126,8 @@ function Profile() {
                         <div className="card mb-4">
                             <div className="card-body text-center">
                                 <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar" className="rounded-circle img-fluid" style={{ width: "150px" }} />
-                                <h5 className="my-3">{name}</h5>
+                                <h5 className="my-3">{username}</h5>
                                 <h5 className="text-muted mb-1" style={{ "text-shadow": `${textDecor}` }}>{admin}</h5>
-                                {/* <div className="d-flex justify-content-center mb-2">
-                  <button type="button" data-mdb-button-init data-mdb-ripple-init className="btn btn-primary">
-                    Follow
-                  </button>
-                  <button type="button" data-mdb-button-init data-mdb-ripple-init className="btn btn-outline-primary ms-1">
-                    Message
-                  </button>
-                </div> */}
                             </div>
                         </div>
                         <div className="card mt-3">
@@ -138,32 +183,6 @@ function Profile() {
                                 </li>
                             </ul>
                         </div>
-                        {/* <div className="card mb-4 mb-lg-0">
-              <div className="card-body p-0">
-                <ul className="list-group list-group-flush rounded-3">
-                  <li className="list-group-item d-flex justify-content-between align-items-center p-3">
-                    <i className="fas fa-globe fa-lg text-warning"></i>
-                    <p className="mb-0">https://mdbootstrap.com</p>
-                  </li>
-                  <li className="list-group-item d-flex justify-content-between align-items-center p-3">
-                    <i className="fab fa-github fa-lg" style={{ color: "#333333" }}></i>
-                    <p className="mb-0">mdbootstrap</p>
-                  </li>
-                  <li className="list-group-item d-flex justify-content-between align-items-center p-3">
-                    <i className="fab fa-twitter fa-lg" style={{ color: "#55acee" }}></i>
-                    <p className="mb-0">@mdbootstrap</p>
-                  </li>
-                  <li className="list-group-item d-flex justify-content-between align-items-center p-3">
-                    <i className="fab fa-instagram fa-lg" style={{ color: "#ac2bac" }}></i>
-                    <p className="mb-0">mdbootstrap</p>
-                  </li>
-                  <li className="list-group-item d-flex justify-content-between align-items-center p-3">
-                    <i className="fab fa-facebook-f fa-lg" style={{ color: "#3b5998" }}></i>
-                    <p className="mb-0">mdbootstrap</p>
-                  </li>
-                </ul>
-              </div>
-            </div> */}
                     </div>
                     <div className="col-lg-8">
                         <div className="card mb-4">
@@ -191,25 +210,25 @@ function Profile() {
                                         <p className="mb-0">Email</p>
                                     </div>
                                     <div className="col-sm-9">
-                                        <p className="text-muted mb-0">{ }</p>
+                                        <p className="text-muted mb-0">{email}</p>
                                     </div>
                                 </div>
                                 <hr />
                                 <div className="row">
                                     <div className="col-sm-3">
-                                        <p className="mb-0">Mobile</p>
+                                        <p className="mb-0">Title</p>
                                     </div>
                                     <div className="col-sm-9">
-                                        <p className="text-muted mb-0">(098) 765-4321</p>
+                                        <p className="text-muted mb-0">{titles[title]}</p>
                                     </div>
                                 </div>
                                 <hr />
                                 <div className="row">
                                     <div className="col-sm-3">
-                                        <p className="mb-0">Address</p>
+                                        <p className="mb-0">Problems Solved</p>
                                     </div>
                                     <div className="col-sm-9">
-                                        <p className="text-muted mb-0">Bay Area, San Francisco, CA</p>
+                                        <p className="text-muted mb-0">{prob_solved}</p>
                                     </div>
                                 </div>
                             </div>
@@ -218,39 +237,6 @@ function Profile() {
                             <div className="col-md-6">
                                 <div className="card mb-4 mb-md-0">
                                     <div className="card-body">
-                                        {/* <p className="mb-4">
-                      <span className="text-primary font-italic me-1">assigment</span> Project Status
-                    </p>
-                    <p className="mb-1" style={{ fontSize: ".77rem" }}>
-                      Web Design
-                    </p>
-                    <div className="progress rounded" style={{ height: "5px" }}>
-                      <div className="progress-bar" role="progressbar" style={{ width: "80%" }} aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                    <p className="mt-4 mb-1" style={{ fontSize: ".77rem" }}>
-                      Website Markup
-                    </p>
-                    <div className="progress rounded" style={{ height: "5px" }}>
-                      <div className="progress-bar" role="progressbar" style={{ width: "72%" }} aria-valuenow="72" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                    <p className="mt-4 mb-1" style={{ fontSize: ".77rem" }}>
-                      One Page
-                    </p>
-                    <div className="progress rounded" style={{ height: "5px" }}>
-                      <div className="progress-bar" role="progressbar" style={{ width: "89%" }} aria-valuenow="89" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                    <p className="mt-4 mb-1" style={{ fontSize: ".77rem" }}>
-                      Mobile Template
-                    </p>
-                    <div className="progress rounded" style={{ height: "5px" }}>
-                      <div className="progress-bar" role="progressbar" style={{ width: "55%" }} aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                    <p className="mt-4 mb-1" style={{ fontSize: ".77rem" }}>
-                      Backend API
-                    </p>
-                    <div className="progress rounded mb-2" style={{ height: "5px" }}>
-                      <div className="progress-bar" role="progressbar" style={{ width: "66%" }} aria-valuenow="66" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div> */}
                                         <PieChart
                                             series={[
                                                 {

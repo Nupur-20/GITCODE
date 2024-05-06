@@ -1,6 +1,10 @@
 import React,{ useEffect,useState } from 'react'
+import { toast } from "react-toastify"
+import 'react-toastify/dist/ReactToastify.css'
 
 const Compiler=(props) => {
+    const notifysuccess=msg => toast.success(msg)
+    const notifyerror=error => toast.error(error)
     const prob_id=props.prob_id;
     const [code,setCode]=useState("import sys\n# Input format is x=sys.argv[i]\n# Enter your code here\n");
     const [expectedOutput,setExpectedOutput]=useState([4,6]);
@@ -45,6 +49,9 @@ const Compiler=(props) => {
                 if (data.passed) {
                     console.log("All test cases passed");
                     setPassed(1);
+                }
+                if (data.rank_changed) {
+                    notifysuccess("Congratulations!! Your rank is updated");
                 }
             }
             // const out=await data.output;

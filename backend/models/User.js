@@ -37,6 +37,14 @@ const UserSchema=new Schema({
     },
     Questions_solved: [String],
     Questions_Created: [String],
+    Correct_submissions: {
+        type: Number,
+        default: 0
+    },
+    Wrong_submissions: {
+        type: Number,
+        default: 0
+    },
     Admin: {
         type: Boolean,
         default: 0

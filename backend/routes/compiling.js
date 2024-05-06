@@ -12,6 +12,8 @@ router.post("/runit",authenticateToken,async (req,res) => {
         // const input=req.body.input;
         const prob_id=req.body.probid;
         const user_id=req.userId;
+        const user=await User.findById(user_id);
+        let rank_changed=0;
         console.log(prob_id)
         // save the code in python file first
         fs.writeFile('./temp.py',code,function (err) {
@@ -51,6 +53,9 @@ router.post("/runit",authenticateToken,async (req,res) => {
             console.log('stdout:',stdout);
             console.log('stderr:',stderr);
             if (stderr) {
+                await user.updateOne({
+                    Wrong_submissions: user.Wrong_submissions+1
+                })
                 res.status(200).json({ passed: 0,compiled: 0,message: "Error while running a test case",error: stderr });
             }
             const out=stdout;
@@ -86,22 +91,38 @@ router.post("/runit",authenticateToken,async (req,res) => {
         console.log(Output);
 
         // if test cases passed then increment correct submissions and also insert this problem id in solved problems of user
-        await problem.updateOne({
-            Correct_Submissions: problem.Correct_Submissions+passed
-        })
-        const user=await User.findById(user_id);
-        await user.updateOne({
-            $addToSet: {
-                Questions_solved: prob_id
+        if (passed) {
+            await problem.updateOne({
+                Correct_Submissions: problem.Correct_Submissions+passed
+            })
+            await user.updateOne({
+                Correct_submissions: user.Correct_submissions+1
+            })
+            await user.updateOne({
+                $addToSet: {
+                    Questions_solved: prob_id
+                }
+            })
+
+            // if total problems solved exceed 3,6,9,12 or 15 then title increased by 1
+
+            const solved=user.Questions_solved.length;
+            const title=user?.Title;
+            console.log(user.Title);
+            console.log(solved);
+            if ((solved>=3&&title<1)||(solved>=6&&title<2)||(solved>=9&&title<3)||(solved>=12&&title<4)||(solved>=15&&title<5)) {
+                await user.updateOne({
+                    Title: user.Title+1
+                })
+                rank_changed=1;
             }
-        })
-
-        // if total problems solved exceed 3,6,9,12 or 15 then title increased by 1
-        if ((user.Questions_solved.length)%3==0&&user.Title<6) {
-            user.Title+=1;
         }
-
-        res.status(200).send({ passed: passed,compiled: 1,message: "All test cases compiled succesfully",output: Output });
+        else {
+            await user.updateOne({
+                Wrong_submissions: user.Wrong_submissions+1
+            })
+        }
+        res.status(200).send({ passed: passed,compiled: 1,message: "All test cases compiled succesfully",output: Output,rank_changed: rank_changed });
     } catch (error) {
         console.log("Error in compiling(Backend)");
         console.log(error);
