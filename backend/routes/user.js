@@ -135,5 +135,25 @@ router.post('/othersprofile',async (req,res) => {
     }
 })
 
+router.get('/leaderboard',async (req,res) => {
+    try {
+        const sortedData=await User.aggregate([
+            {
+                $project: {
+                    Username: 1,
+                    _id: 1,
+                    questionsSolvedCount: { $size: '$Questions_solved' }
+                }
+            },
+            { $sort: { questionsSolvedCount: -1 } } // Sorting by Questions_solved array length in descending order
+        ]);
+        console.log(sortedData);
+        res.status(200).json(sortedData);
+    } catch (error) {
+        console.log(error);
+        res.status(500).send("Internal server error!!")
+    }
+})
+
 
 module.exports=router;

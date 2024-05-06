@@ -21,6 +21,7 @@ import Testcase_item from './components/UserProblems/Testcase_item';
 import Comments from './components/Comments/Comments';
 import Verify from './components/Admin/Verify';
 import Others from './components/User/Others';
+import Leaderboard from './components/User/Leaderboard';
 
 function App() {
   const [Problem_statement2,set_statement]=useState("d");
@@ -58,6 +59,7 @@ function App() {
             <Route exact path="/comments" element={<Comments prob_id={probid} />} />
             <Route exact path="/verifyproblems" element={<Verify />} />
             <Route exact path="/user/:userid" element={<Others />} />
+            <Route exact path="/leaderboard" element={<Leaderboard />} />
             <Route exact path="/problem_statement" element={<Problem_statement Problem_statement1={Problem_statement2} prob_id={probid} Verified={Verified} />} />
             <Route exact path="/updateproblem" element={<UpdateProblem statement={Problem_statement2} testcases={Test_cases2} hiddencases={Hidden_cases2} verified={Verified} tag={Tag} title={Title} code={Code} id={Id} />} />
           </Routes>

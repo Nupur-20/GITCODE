@@ -106,6 +106,11 @@ function Navbar(props) {
                                                     AddProblem
                                                 </Link>
                                             </li>
+                                            <li>
+                                                <Link className="dropdown-item" to="/leaderboard">
+                                                    Leaderboard
+                                                </Link>
+                                            </li>
                                         </ul>
                                     </li></>}
                         </ul>

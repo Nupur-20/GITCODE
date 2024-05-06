@@ -305,7 +305,7 @@ a {
 }
 
 .p {
-  background: linear-gradient(to right, #978ae9, #cbbcdb);
+  background: linear-gradient(to left, #978ae9, #cbbcdb);
 }
 
 .button2 {

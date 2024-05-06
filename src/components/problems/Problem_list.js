@@ -27,7 +27,7 @@ function Problem_list(props) {
     return (
         <>
             <div>
-                <li className="list-group-item d-flex justify-content-between align-items-start mx-3 my-2 ">
+                <li className="list-group-item d-flex justify-content-between align-items-start mx-3 my-2" style={{ borderRadius: '15px' }}>
                     <div className="ms-2 me-auto">
                         <div className="fw-bold">
                             <Link onClick={func1} to="/problem_statement">
@@ -39,9 +39,9 @@ function Problem_list(props) {
                         <br />
                         {/* {verified? "verified":"Not verified"} */}
                         {/* <button type="button" className="btn btn-danger" onClick={delete_it}>Delete</button>
-                        <button type="button" class="btn btn-primary" onClick={update_it}>Update</button>
-                        <button type="button" class="btn btn-success" onClick={test_cases}>Edit TestCases</button> */}
-                        <button type="button" class="btn btn-warning" onClick={goto_comments}>Comments</button>
+        <button type="button" className="btn btn-primary" onClick={update_it}>Update</button>
+        <button type="button" className="btn btn-success" onClick={test_cases}>Edit TestCases</button> */}
+                        <button type="button" className="btn btn-warning" onClick={goto_comments}>Comments</button>
                     </div>
                     <span className="badge bg-primary rounded-pill">{correct}</span>
                 </li>
