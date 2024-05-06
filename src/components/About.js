@@ -3,60 +3,81 @@ import PropTypes from "prop-types"
 
 function About(props) {
   return (
-    <div className="card3 my-5 mx-3">
-      <div className="about-section">
-        <h1>About Us Page</h1>
-        <p>Some text about who we are and what we do.</p>
-        <p>Resize the browser window to see that this page is responsive by the way.</p>
+    <>
+      <div className="card4" style={{ backgroundColor: "white", height: "110vh" }}>
+        <div className="about-section" style={{ marginLeft: "10px", marginRight: "10px" }}>
+          <h3 style={{ fontSize: "2.3rem" }}>Welcome to GitCode</h3>
+          <p style={{ textAlign: "center" }}>GitCode is more than just a coding platform; it's your gateway to a world of learning, collaboration, and recognition.</p>
+          <p style={{ textAlign: "center" }}> Whether you're a seasoned coder or just starting your journey, GitCode offers a range of features designed to enhance your coding experience and propel your skills to new heights.</p>
+          {/* </div> */}
+          {/* <div className="badges"> */}
+          <hr />
+          <p style={{ textAlign: "center" }}>
+            <h3 style={{ textAlign: "center" }}>What We Offer</h3>
+            Solve/Practice Problems Dive into our extensive collection of coding problems covering various topics and difficulty levels. Sharpen your skills, tackle challenges, and track your progress as you solve each problem. See Others' Solutions Gain insights and learn from the best by exploring
+            solutions shared by other users. Compare approaches, discover new techniques, and expand your coding repertoire. Contribute Problems and Test Cases Be a part of the community and contribute your own coding problems and test cases. Share your creativity, challenge fellow coders, and help
+            build a diverse and engaging platform. Receive Titles on Basis of Performances Showcase your coding prowess and earn titles based on your performance. From "Rising Star" to "Coding Maestro," unlock new titles as you achieve milestones and excel in coding challenges.
+          </p>
+          <hr />
+          <p style={{ textAlign: "center" }}>
+            <h3 style={{ textAlign: "center" }}>Our Mission </h3>
+            At GitCode, we are committed to fostering a vibrant and supportive coding community. Our mission is to empower coders of all levels to learn, collaborate, and thrive. Whether you're here to practice, learn, or contribute, GitCode is your platform for growth and achievement. Join us on
+            GitCode and embark on an exciting coding journey. Let's code, learn, and inspire together!
+          </p>
+          <hr />
+          <h5 className="badges" style={{ textAlign: "center" }}>
+            We give different badges to the coders based on the number of questions they solve in order to encourage them.
+          </h5>
+          {/* <p>
+            <img src="img.jpg" alt="i" style={{ height: "40px", width: "100px" }} />
+          </p> */}
+        </div>
+        <h2 style={{ textAlign: "center", marginTop: "10px" }}>Our Team</h2>
+        <div className="row">
+          <div className="column3">
+            <div className="card3">
+              <img />
+              <div className="container3">
+                <h2>Sparsh</h2>
+                <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+                <p>sparsh@mail.com</p>
+                <p>
+                  <button className="button3">Contact</button>
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="column3">
+            <div className="card3">
+              <img />
+              <div className="container3">
+                <h2>Akash Sharma</h2>
+                <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+                <p>akash@mail.com.com</p>
+                <p>
+                  <button className="button3">Contact</button>
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="column3">
+            <div className="card3">
+              <img />
+              <div className="container3">
+                <h2>Nupur Tiwari</h2>
+                <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+                <p>nupur@mail.com</p>
+                <p>
+                  <button className="button3">Contact</button>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>{" "}
       </div>
-      <h2 style={{ textAlign: "center" }}>Our Team</h2>
-      <div className="row">
-        <div className="column3">
-          <div className="card3">
-            <img src="/w3images/team1.jpg" alt="Jane" style={{ width: "100%" }} />
-            <div className="container3">
-              <h2>Jane Doe</h2>
-              <p className="title3">CEO & Founder</p>
-              <p>Some text that describes me lorem ipsum ipsum lorem.</p>
-              <p>jane@example.com</p>
-              <p>
-                <button className="button3">Contact</button>
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div className="column3">
-          <div className="card3">
-            <img src="/w3images/team2.jpg" alt="Mike" style={{ width: "100%" }} />
-            <div className="container3">
-              <h2>Mike Ross</h2>
-              <p className="title3">Art Director</p>
-              <p>Some text that describes me lorem ipsum ipsum lorem.</p>
-              <p>mike@example.com</p>
-              <p>
-                <button className="button3">Contact</button>
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div className="column3">
-          <div className="card3">
-            <img src="/w3images/team3.jpg" alt="John" style={{ width: "100%" }} />
-            <div className="container3">
-              <h2>John Doe</h2>
-              <p className="title3">Designer</p>
-              <p>Some text that describes me lorem ipsum ipsum lorem.</p>
-              <p>john@example.com</p>
-              <p>
-                <button className="button3">Contact</button>
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>{" "}
-    </div>
+    </>
   )
 }
 
