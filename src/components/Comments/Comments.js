@@ -58,8 +58,8 @@ const Comments=() => {
             console.log(error);
         }
     }
-    const user_profile=async () => {
-        // visit other users profile
+    const user_profile=async (userid) => {
+        navigate(`/user/${userid}`);
     }
     useEffect(() => { fetch_comments() },[])
     return (
@@ -83,7 +83,7 @@ const Comments=() => {
                                 </blockquote>
                             </div>
                         </div> */}
-                            <button className="navbar-brand" onClick={user_profile} style={{ display: "inline-block" }}>
+                            <button className="navbar-brand" onClick={() => { user_profile(item.author_id) }} style={{ display: "inline-block" }}>
                                 <img src={prof} width="25" height="25" alt="" />
                             </button>
                             <h4 style={{ display: "inline-block" }}>{item.author}</h4>

@@ -122,5 +122,18 @@ router.get('/profile',authenticateToken,async (req,res) => {
     }
 })
 
+router.post('/othersprofile',async (req,res) => {
+    try {
+        const id=req.body.user_id;
+        console.log(id);
+        const user=await User.findById(id);
+        // console.log(user)
+        res.send(user);
+    } catch (error) {
+        console.log(error);
+        res.status(500).send("Internal server error!!")
+    }
+})
+
 
 module.exports=router;

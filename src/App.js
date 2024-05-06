@@ -20,6 +20,7 @@ import Test_cases from './components/UserProblems/Test_cases';
 import Testcase_item from './components/UserProblems/Testcase_item';
 import Comments from './components/Comments/Comments';
 import Verify from './components/Admin/Verify';
+import Others from './components/User/Others';
 
 function App() {
   const [Problem_statement2,set_statement]=useState("d");
@@ -56,6 +57,7 @@ function App() {
             <Route exact path="/testcaseitem" element={<Testcase_item input={intput} output={output} />} />
             <Route exact path="/comments" element={<Comments prob_id={probid} />} />
             <Route exact path="/verifyproblems" element={<Verify />} />
+            <Route exact path="/user/:userid" element={<Others />} />
             <Route exact path="/problem_statement" element={<Problem_statement Problem_statement1={Problem_statement2} prob_id={probid} Verified={Verified} />} />
             <Route exact path="/updateproblem" element={<UpdateProblem statement={Problem_statement2} testcases={Test_cases2} hiddencases={Hidden_cases2} verified={Verified} tag={Tag} title={Title} code={Code} id={Id} />} />
           </Routes>
