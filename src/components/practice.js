@@ -62,12 +62,15 @@ function Practice(props) {
     return (
         <>
             <h1>Problems</h1>
-            <button type="button" className="btn btn-info" onClick={goto_verify}>Verify Problems</button>
+            {sharedData.admin==1&&localStorage.getItem("admin")==1
+                ? <button type="button" className="btn btn-info" onClick={goto_verify}>Verify Problems</button>
+                :<></>
+            }
             <ol class="list-group list-group-numbered">
                 <li>
                     {Data&&Data.length>0&&Data.map((item) => (
                         // <li key={item._id}>{item.playlist}-----{item.user}</li>
-                        <Problem_list title={item.P_title} total_submissions={item.Total_Submissions} correct_submissions={item.Correct_Submissions} tag={item.Tag} problem_statement={item.Statement} test_cases={item.Test_cases} />
+                        <Problem_list title={item.P_title} total_submissions={item.Total_Submissions} correct_submissions={item.Correct_Submissions} tag={item.Tag} problem_statement={item.Statement} test_cases={item.Test_cases} id={item._id} />
                     ))}
                 </li>
             </ol>

@@ -16,6 +16,7 @@ const authenticateToken=(req,res,next) => {
             return res.sendStatus(403); // Forbidden if token is invalid
         }
         // console.log(decodedToken.user.id);
+        console.log("Authentication Done!!");
         req.userId=decodedToken.user.id; // Store user ID from token in request object
         next();
     });

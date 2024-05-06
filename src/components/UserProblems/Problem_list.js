@@ -19,8 +19,8 @@ function Problem_list(props) {
     const id=props.id;
     const func1=() => {
         sharedData.set_statement(statement);
-        sharedData.set_cases(cases);
-        sharedData.set_hiddencases(hiddencases);
+        // sharedData.set_cases(cases);
+        // sharedData.set_hiddencases(hiddencases);
         sharedData.set_verified(verified);
         sharedData.setProbid(id);
     }
