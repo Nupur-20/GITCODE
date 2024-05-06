@@ -3,12 +3,22 @@ const router=express.Router();
 const Problem=require('../models/Problem');
 
 // Router 1:getting all problems stored in database
-router.get('/all',async (req,res) => {
+router.post('/all',async (req,res) => {
     try {
+        const verified=req.body.verified;
         console.log("i am in all problems api");
         const data=await Problem.find();
+        // console.log("hi");
         console.log(data);
-        res.send(data);
+        const Dat=[];
+        await Promise.all(data?.map(async element => {
+            if (element.Is_official==verified) {
+                Dat.push(element);
+            }
+        }));
+        console.log("here");
+        console.log(Dat);
+        res.status(200).json({ message: "Successfulluy fetched",data: Dat });
     } catch (error) {
         res.status(500).send('Internal Server Error!!!');
     }

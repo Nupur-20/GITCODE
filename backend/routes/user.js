@@ -101,7 +101,7 @@ router.post('/login',async (req,res) => {
         const authToken=jwt.sign(data,signature,{ expiresIn: '2h' });
 
         console.log(authToken);
-        res.send({ authToken });
+        res.status(200).json({ authToken,admin: user.Admin });
     } catch (error) {
         console.log(error)
         res.status(500).send('Internal Server Error');
@@ -121,5 +121,6 @@ router.get('/profile',authenticateToken,async (req,res) => {
         res.status(500).send("Internal server error!!")
     }
 })
+
 
 module.exports=router;

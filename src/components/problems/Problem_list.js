@@ -34,9 +34,10 @@ function Problem_list(props) {
                                 {title}
                             </Link>
                         </div>
+                        {/* <br /> */}
                         {tag}
                         <br />
-                        {verified? "verified":"Not verified"}
+                        {/* {verified? "verified":"Not verified"} */}
                         {/* <button type="button" className="btn btn-danger" onClick={delete_it}>Delete</button>
                         <button type="button" class="btn btn-primary" onClick={update_it}>Update</button>
                         <button type="button" class="btn btn-success" onClick={test_cases}>Edit TestCases</button> */}

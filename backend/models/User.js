@@ -36,7 +36,11 @@ const UserSchema=new Schema({
         default: 0
     },
     Questions_solved: [String],
-    Questions_Created: [String]
+    Questions_Created: [String],
+    Admin: {
+        type: Boolean,
+        default: 0
+    }
 });
 
 module.exports=mongoose.model('User',UserSchema);

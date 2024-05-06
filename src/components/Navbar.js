@@ -16,11 +16,11 @@ function Navbar(props) {
                             <li className="nav-item mx-5">
                                 <Link className="nav-link active" aria-current="page" to="/">Home</Link>
                             </li>
-                            <li className="nav-item mx-5">
+                            {/* <li className="nav-item mx-5">
                                 <Link className="nav-link active" aria-current="page" to="/compiler">Compiler</Link>
-                            </li>
+                            </li> */}
                             <li className="nav-item mx-5">
-                                <Link className="nav-link active" aria-current="page" to="/practice">Practice</Link>
+                                <Link className="nav-link active" aria-current="page" to="/practice">Problems</Link>
                             </li>
                             <li className="nav-item mx-5">
                                 <Link className="nav-link active" aria-current="page" to="/contact">Contact Us</Link>

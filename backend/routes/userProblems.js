@@ -291,4 +291,27 @@ router.post("/updateproblem",authenticateToken,async (req,res) => {
   }
 })
 
+router.post("/verify",authenticateToken,async (req,res) => {
+  try {
+    const userid=req.userId;
+    const probid=req.body.probid;
+    const user=await User.findById(userid);
+    const problem=await Problem.findById(probid);
+    if (!user||!problem) {
+      res.status(400).json({ message: "Not found" });
+    }
+    if (!user.Admin) {
+      res.status(404).json({ message: "User is not allowed to verify problems" })
+    }
+    await problem.updateOne({
+      Is_official: 1
+    });
+    res.status(200).json({ message: "Problem is now verified" });
+  } catch (error) {
+    console.log("Error in verifying problem")
+    console.log(error)
+    res.status(500).send("Internal Server Error")
+  }
+})
+
 module.exports=router

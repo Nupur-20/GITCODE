@@ -16,6 +16,9 @@ function Profile() {
     const [username,setUsername]=useState("none")
     const [title,setTitle]=useState(0)
     const [email,setEmail]=useState("");
+    const [admin,setAdmin]=useState("");
+    const [backColor,setBackColor]=useState("#eee");
+    const [textDecor,setTextDecor]=useState("");
     const fetchDetails=async () => {
         try {
             const response=await fetch("http://localhost:5000/api/user/profile",{
@@ -34,6 +37,11 @@ function Profile() {
                 setUsername(userData?.Username)
                 setEmail(userData?.Email)
                 setTitle(userData?.Title)
+                if (userData?.Admin) {
+                    // setBackColor("#87CEFA");
+                    setAdmin("ADMIN");
+                    setTextDecor("2px 2px 5px red");
+                }
             } else {
                 console.log("Failed to fetch user!!")
                 navigate("/login")
@@ -46,6 +54,7 @@ function Profile() {
         try {
             localStorage.setItem("authToken","")
             localStorage.setItem("timeStamp","")
+            localStorage.setItem("admin",0)
             console.log("Logout Successful!!")
             navigate("/login")
         } catch (error) {
@@ -57,7 +66,7 @@ function Profile() {
         fetchDetails()
     },[])
     return (
-        <section style={{ backgroundColor: "#eee" }}>
+        <section style={{ backgroundColor: `${backColor}` }}>
             <div className="container py-5" style={{ marginTop: "10px" }}>
                 <div className="row">
                     <div className="col-lg-4">
@@ -65,7 +74,7 @@ function Profile() {
                             <div className="card-body text-center">
                                 <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar" className="rounded-circle img-fluid" style={{ width: "150px" }} />
                                 <h5 className="my-3">{name}</h5>
-                                <p className="text-muted mb-1">{titles[title]}</p>
+                                <h5 className="text-muted mb-1" style={{ "text-shadow": `${textDecor}` }}>{admin}</h5>
                                 {/* <div className="d-flex justify-content-center mb-2">
                   <button type="button" data-mdb-button-init data-mdb-ripple-init className="btn btn-primary">
                     Follow

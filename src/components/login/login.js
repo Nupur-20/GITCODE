@@ -1,75 +1,10 @@
-// import React,{ useState } from 'react';
-// import { Link,useNavigate } from 'react-router-dom';
-// // to access browser memory/cache
 
-// function Login() {
-//     const navigate=useNavigate();
-//     const [authToken,setauthToken]=useState("");
-//     const [password,setPassword]=useState("");
-//     const [email,setEmail]=useState("");
-//     const login=async (e) => {
-//         try {
-//             e.preventDefault();
-//             navigate("/");
-//             const response=await fetch("http://localhost:5000/api/user/login",{
-//                 method: "POST",
-//                 mode: "cors",
-//                 headers: {
-//                     'Accept': 'application/json',
-//                     'Content-Type': 'application/json',
-//                 },
-//                 body: JSON.stringify({
-//                     "email": email,
-//                     "password": password
-//                 })
-//             });
-
-//             if (response.ok) {
-//                 const token=await response.json();
-//                 setauthToken(token.authToken);
-//                 const currDate=new Date().toLocaleDateString();
-//                 const currTime=new Date().toLocaleTimeString();
-//                 localStorage.setItem('authToken',token.authToken);
-//                 localStorage.setItem('timeStamp',currTime);
-//                 console.log("Login successful");
-//             } else {
-//                 console.error("Login failed");
-//             }
-//         } catch (error) {
-//             console.log("here it comes");
-//             console.error("Error:",error);
-//             // Navigate("/");
-//         }
-//     }
-//     return (
-//         <>
-//             <form>
-//                 <div className="form-group">
-//                     <label htmlFor="exampleInputEmail1">Email address</label>
-//                     <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" onChange={(e) => {
-//                         setEmail(e.target.value)
-//                     }} />
-//                 </div>
-//                 <div className="form-group">
-//                     <label htmlFor="exampleInputPassword1">Password</label>
-//                     <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password" onChange={(e) => {
-//                         setPassword(e.target.value)
-//                     }} />
-//                 </div>
-//                 <button type="submit" className="btn btn-primary" onClick={login}>Submit</button>
-//                 <Link className="nav-link active" aria-current="page" to="/signup">Signup</Link>
-//             </form>
-//         </>
-//     );
-// }
-
-// export default Login;
-
-import React,{ useState } from "react"
+import React,{ useState,useContext } from "react"
 import { Link,useNavigate } from "react-router-dom"
 import { MDBBtn,MDBContainer,MDBRow,MDBCol,MDBCard,MDBCardBody,MDBInput,MDBCheckbox,MDBIcon } from "mdb-react-ui-kit"
 import { toast } from "react-toastify"
 import 'react-toastify/dist/ReactToastify.css'
+import MyContext from './../../context/Mycontext';
 
 function Login() {
     const navigate=useNavigate()
@@ -78,6 +13,7 @@ function Login() {
     const [email,setEmail]=useState("")
     const notifysuccess=msg => toast.success(msg)
     const notifyerror=error => toast.error(error)
+    const sharedData=useContext(MyContext);
     const login=async e => {
         try {
             e.preventDefault()
@@ -94,13 +30,21 @@ function Login() {
                 }),
             })
             if (response.ok) {
-                const token=await response.json()
-                setauthToken(token.authToken)
+                const res=await response.json()
+                setauthToken(res.authToken)
                 const currDate=new Date().toLocaleDateString()
                 const currTime=new Date().toLocaleTimeString()
-                localStorage.setItem("authToken",token.authToken)
+                localStorage.setItem("authToken",res.authToken)
                 localStorage.setItem("timeStamp",currTime)
                 console.log("Login successful")
+                if (res.admin) {
+                    localStorage.setItem("admin",1);
+                    sharedData.setAdmin(1);
+                }
+                else {
+                    localStorage.setItem("admin",0);
+                    sharedData.setAdmin(0);
+                }
                 notifysuccess("Welcome..................");
                 navigate("/")
             } else {
