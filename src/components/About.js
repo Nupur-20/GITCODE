@@ -2,7 +2,7 @@ import PropTypes from "prop-types"
 import React, { useContext, useEffect, useState } from "react"
 import imag1 from "./akash.jpg"
 import imag2 from "./nupur.jpg"
-import imag3 from "./sparsh.jpg"
+import imag3 from "./sparsh2.jpg"
 function About(props) {
   const [imag, setImag] = useState(imag1)
   return (
