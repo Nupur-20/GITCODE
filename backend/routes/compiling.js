@@ -121,11 +121,6 @@ router.post("/runit",authenticateToken,async (req,res) => {
                 Wrong_submissions: user.Wrong_submissions+1
             })
         }
-        fs.writeFile('./temp.py',"",function (err) {
-            // console.log(err);
-            if (err) throw err;
-            console.log('Saved!');
-        });
         res.status(200).send({ passed: passed,compiled: 1,message: "All test cases compiled succesfully",output: Output,rank_changed: rank_changed });
     } catch (error) {
         console.log("Error in compiling(Backend)");
