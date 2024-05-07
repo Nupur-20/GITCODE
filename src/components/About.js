@@ -7,7 +7,7 @@ function About(props) {
   const [imag, setImag] = useState(imag1)
   return (
     <>
-      <div className="card4" style={{ backgroundColor: "white", height: "110vh" }}>
+      <div className="card4" style={{ backgroundColor: "white", height: "100%" }}>
         <div className="about-section" style={{ marginLeft: "10px", marginRight: "10px" }}>
           <h3 style={{ fontSize: "2.3rem" }}>Welcome to GitCode</h3>
           <p style={{ textAlign: "center" }}>GitCode is more than just a coding platform; it's your gateway to a world of learning, collaboration, and recognition.</p>
