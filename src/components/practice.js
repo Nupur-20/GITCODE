@@ -59,7 +59,7 @@ function Practice(props) {
 
   return (
     <>
-      <div className="p" style={{ height: "100vh" }}>
+      <div className="p" style={{ height: "100%" }}>
         <h1 style={{ color: "white" }}>Problems</h1>
         {sharedData.admin == 1 && localStorage.getItem("admin") == 1 ? (
           <button type="button" className="btn btn-info" onClick={goto_verify}>

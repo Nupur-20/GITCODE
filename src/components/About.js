@@ -1,7 +1,10 @@
-import React from "react"
 import PropTypes from "prop-types"
-
+import React, { useContext, useEffect, useState } from "react"
+import imag1 from "./akash.jpg"
+import imag2 from "./nupur.jpg"
+import imag3 from "./sparsh.jpg"
 function About(props) {
+  const [imag, setImag] = useState(imag1)
   return (
     <>
       <div className="card4" style={{ backgroundColor: "white", height: "110vh" }}>
@@ -36,13 +39,21 @@ function About(props) {
         <div className="row">
           <div className="column3">
             <div className="card3">
-              <img />
+              <center>
+                <img src={imag3} alt="akash" style={{ width: "100px", height: "150px", alignContent: "center" }} />
+              </center>
               <div className="container3">
                 <h2>Sparsh</h2>
-                <p>Some text that describes me lorem ipsum ipsum lorem.</p>
-                <p>sparsh@mail.com</p>
+                <p>Computer Science Engineering Student.</p>
+                <p>Jaypee Institute of Information Technology</p>
                 <p>
-                  <button className="button3">Contact</button>
+                  <button
+                    className="button3"
+                    onClick={() => {
+                      window.location.href = "mailto:sparshrajput92@gmail.com"
+                    }}>
+                    Contact
+                  </button>
                 </p>
               </div>
             </div>
@@ -50,13 +61,21 @@ function About(props) {
 
           <div className="column3">
             <div className="card3">
-              <img />
+              <center>
+                <img src={imag} alt="akash" style={{ width: "100px", height: "150px", alignContent: "center" }} />
+              </center>
               <div className="container3">
                 <h2>Akash Sharma</h2>
-                <p>Some text that describes me lorem ipsum ipsum lorem.</p>
-                <p>akash@mail.com.com</p>
+                <p>Computer Science Engineering Student.</p>
+                <p>Jaypee Institute of Information Technology</p>
                 <p>
-                  <button className="button3">Contact</button>
+                  <button
+                    className="button3"
+                    onClick={() => {
+                      window.location.href = "mailto:akash.sharma251202@gmail.com"
+                    }}>
+                    Contact
+                  </button>
                 </p>
               </div>
             </div>
@@ -64,13 +83,21 @@ function About(props) {
 
           <div className="column3">
             <div className="card3">
-              <img />
+              <center>
+                <img src={imag2} alt="akash" style={{ width: "100px", height: "150px", alignContent: "center" }} />
+              </center>
               <div className="container3">
                 <h2>Nupur Tiwari</h2>
-                <p>Some text that describes me lorem ipsum ipsum lorem.</p>
-                <p>nupur@mail.com</p>
+                <p>Computer Science Engineering Student.</p>
+                <p>Jaypee Institute of Information Technology</p>
                 <p>
-                  <button className="button3">Contact</button>
+                  <button
+                    className="button3"
+                    onClick={() => {
+                      window.location.href = "mailto:ntiffco@gmail.com"
+                    }}>
+                    Contact
+                  </button>
                 </p>
               </div>
             </div>

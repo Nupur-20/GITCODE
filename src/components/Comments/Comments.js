@@ -64,7 +64,7 @@ const Comments = () => {
     fetch_comments()
   }, [])
   return (
-    <div className="p" style={{ height: "110vh" }}>
+    <div className="p" style={{ height: "140vh" }}>
       <div className="form-group3" style={{ marginLeft: "95px", width: "1250px" }}>
         {/* <label for="exampleFormControlTextarea1"></label> */}
         <label for="exampleFormControlTextarea1" style={{ marginLeft: "3px", marginTop: "10px", font: "1.2rem" }}>
